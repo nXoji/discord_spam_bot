@@ -8,7 +8,7 @@
 apt update && apt upgrade -y
 apt install python
 apt install git
-git clone https://github.com/RomaProgram/spam-bot-discord/
+git clone https://github.com/illia841/discord_spam_bot
 cd spam-bot-discord
 pip install -r requirements.txt
 ```
