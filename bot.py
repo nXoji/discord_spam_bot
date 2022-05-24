@@ -11,7 +11,7 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game("Хороший бот"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="гей порно"))
     print("Готов всех джага-джага")
 
 
