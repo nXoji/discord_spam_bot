@@ -28,6 +28,8 @@ async def help(ctx):
 
 @bot.command()
 async def delete(ctx, n):
+    x = 0
+
     if n != "0":
         channel = n
 
@@ -35,6 +37,8 @@ async def delete(ctx, n):
     else:
         for c in ctx.guild.channels:
             await c.delete()
+            x += 1
+        print(f'Удалено {x} каналов')
 
 
 @bot.command()
@@ -60,4 +64,6 @@ async def spam_server(ctx, n):
 async def stop(ctx):
     await bot.change_presence(status=discord.Status.offline)
     raise SystemExit
+
+
 bot.run(settings['token'])
