@@ -21,7 +21,7 @@ async def help(ctx):
     emb1 = discord.Embed(color = discord.Colour.from_rgb(102, 0, 204), title ="Информация о командах" )
 
     emb1.add_field(name = f"{PREFIX}delete 0: ", value="Удалить ", inline=False)
-    emb1.add_field(name = f"{PREFIX}delete '{channel}': ", value="Удалить ", inline=False)
+    emb1.add_field(name = f"{PREFIX}delete : ", value="Удалить ", inline=False)
     emb1.add_field(name = f"{PREFIX}spam_server : ", value="Заспамить сервер", inline=True)
 
     message = await ctx.send(embed = emb1)
@@ -75,7 +75,7 @@ async def spam_server(ctx, n):
     spam_line = "Вы были заспамлены! By illia841"
     spam_text = ""
     for i in range(15):
-        spam_text += {spam_line} + "\n"
+        spam_text += spam_line + "\n"
     
     if n == '0':
         for line in range(0 , 999999):
